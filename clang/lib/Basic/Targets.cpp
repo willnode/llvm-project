@@ -494,6 +494,9 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
     case llvm::Triple::Serenity:
       return std::make_unique<SerenityTargetInfo<RISCV64TargetInfo>>(Triple,
                                                                      Opts);
+    case llvm::Triple::Redox:
+      return std::make_unique<RedoxTargetInfo<RISCV64TargetInfo>>(Triple,
+                                                                  Opts);
     default:
       return std::make_unique<RISCV64TargetInfo>(Triple, Opts);
     }
@@ -605,6 +608,9 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
     case llvm::Triple::KFreeBSD:
       return std::make_unique<KFreeBSDTargetInfo<X86_32TargetInfo>>(Triple,
                                                                     Opts);
+    case llvm::Triple::Redox:
+      return std::make_unique<RedoxTargetInfo<X86_32TargetInfo>>(Triple,
+                                                                 Opts);
     case llvm::Triple::Solaris:
       return std::make_unique<SolarisTargetInfo<X86_32TargetInfo>>(Triple,
                                                                    Opts);
@@ -664,6 +670,9 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
     case llvm::Triple::KFreeBSD:
       return std::make_unique<KFreeBSDTargetInfo<X86_64TargetInfo>>(Triple,
                                                                     Opts);
+    case llvm::Triple::Redox:
+      return std::make_unique<RedoxTargetInfo<X86_64TargetInfo>>(Triple,
+                                                                 Opts);
     case llvm::Triple::Solaris:
       return std::make_unique<SolarisTargetInfo<X86_64TargetInfo>>(Triple,
                                                                    Opts);

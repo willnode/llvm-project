@@ -144,6 +144,16 @@ static bool useFramePointerForTargetByDefault(const llvm::opt::ArgList &Args,
     }
   }
 
+  if (Triple.isOSRedox()) {
+    switch (Triple.getArch()) {
+    // Don't use a frame pointer on 32 bit redox.
+    case llvm::Triple::x86:
+      return !clang::driver::tools::areOptimizationsEnabled(Args);
+    default:
+      return true;
+    }
+  }
+
   if (Triple.isOSWindows()) {
     switch (Triple.getArch()) {
     case llvm::Triple::x86:
